@@ -1,9 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:party_games/src/first_game/Servicies/local_text_service.dart';
+
 
 class TextDisplayWidget extends StatefulWidget {
+  final LocalTextService textService;
+
+  const TextDisplayWidget({super.key, required this.textService});
+
   @override
   _TextDisplayWidgetState createState() => _TextDisplayWidgetState();
 }
@@ -19,13 +22,13 @@ class _TextDisplayWidgetState extends State<TextDisplayWidget> {
   }
 
   Future<void> _loadTexts() async {
-    final jsonString = await rootBundle.loadString('assets/json/texts.json');
-    final jsonResponse = json.decode(jsonString);
-    setState(() {
-      _texts = List<String>.from(jsonResponse['texts']);
-    });
+    try {
+      _texts = await widget.textService.fetchTexts();
+      setState(() {});
+    } catch (e) {
+      // Handle errors or show a message to the user
+    }
   }
-
   void _showNextText() {
     setState(() {
       if (_currentIndex < _texts.length - 1) {
@@ -46,9 +49,9 @@ class _TextDisplayWidgetState extends State<TextDisplayWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Party Game'), // Provides a title for your game page
+        title: const Text('Party Game'), // Provides a title for your game page
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context)
               .pop(), // Ensures back navigation is possible
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:party_games/src/first_game/Servicies/local_text_service.dart';
 import 'package:party_games/src/sample_feature/text_widget.dart';
 import '../settings/settings_view.dart';
 import 'sample_item.dart';
@@ -13,7 +14,7 @@ class SampleItemListView extends StatelessWidget {
   });
 
   static const routeName = '/';
-
+  static var localTextSevice = LocalTextService();
   final List<SampleItem> items;
 
   @override
@@ -44,7 +45,7 @@ class SampleItemListView extends StatelessWidget {
             onTap: () {
               if (index == items.length - 1) {
                 // Navigate to the game
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => TextDisplayWidget()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => TextDisplayWidget(textService: LocalTextService())));
               } else {
                 // Navigate to the details page for other items
                 Navigator.restorablePushNamed(
