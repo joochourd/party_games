@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:party_games/src/first_game/Servicies/TextServiceInterface';
+import 'package:party_games/src/first_game/Servicies/text_service_interface.dart';
 
 class RemoteTextService implements TextService {
   final String apiUrl; // URL of your remote API

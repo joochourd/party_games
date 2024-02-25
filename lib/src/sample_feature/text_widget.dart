@@ -23,7 +23,7 @@ class _TextDisplayWidgetState extends State<TextDisplayWidget> {
 
   Future<void> _loadTexts() async {
     try {
-      _texts = await widget.textService.fetchTexts();
+      _texts = await  widget.textService.fetchTexts();
       setState(() {});
     } catch (e) {
       // Handle errors or show a message to the user
