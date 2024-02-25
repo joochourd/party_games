@@ -47,6 +47,22 @@ class _TextDisplayWidgetState extends State<TextDisplayWidget> {
     });
   }
 
+  Color _getBackgroundColorForSentenceType() {
+  if (_currentIndex == 0) {return Colors.white;}
+  var text = _texts[_currentIndex];
+  switch (text.type) {
+    case SentenceType.virus:
+      return Colors.redAccent; // Example color for 'virus' type
+    case SentenceType.text:
+      return Colors.white; // Example color for 'text' type
+    case SentenceType.challenge:
+      return Colors.blueAccent; // Example color for 'challenge' type
+    default:
+      return Colors.white; // Default color
+  }
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +74,7 @@ class _TextDisplayWidgetState extends State<TextDisplayWidget> {
               .pop(), // Ensures back navigation is possible
         ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: _getBackgroundColorForSentenceType(),
       body: _texts.isEmpty
           ? const Center(child: CircularProgressIndicator())
           : Column(
@@ -91,3 +107,4 @@ class _TextDisplayWidgetState extends State<TextDisplayWidget> {
     );
   }
 }
+
