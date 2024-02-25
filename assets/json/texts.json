@@ -1,7 +1,7 @@
 {
-    "texts": [
-      "Who has the longest hair? Point to the person.",
-      "Who is most likely to forget birthdays? Laugh it out!",
-      "Who is the best dancer? Show some moves!"
-    ]
-}  
+  "texts": [
+    {"text": "Who has the longest hair? Point to the person.", "type": "text"},
+    {"text": "Who is most likely to forget birthdays? Laugh it out!", "type": "text"},
+    {"text": "Who is the best dancer? Show some moves!", "type": "challenge"}
+  ]
+}
