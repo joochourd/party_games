@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:party_games/src/Picolo/game_mode.dart';
 import 'package:party_games/src/Picolo/picolo.dart';
 import 'package:party_games/src/first_game/Servicies/local_text_service.dart';
-import 'package:party_games/src/sample_feature/text_widget.dart';
+import 'package:party_games/src/sample_feature/infrastructure/text_display_widget_factory.dart';
 import '../settings/settings_view.dart';
 import 'sample_item.dart';
 
@@ -63,7 +63,7 @@ class SampleItemListView extends StatelessWidget {
               }
               if (item.id == 4) {
                 // Navigate to the game
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => TextDisplayWidget(textService: LocalTextService())));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => TextDisplayWidgetFactory.create()));
               }
               // if (index == items.length - 2) {
               //   // Navigate to the game
