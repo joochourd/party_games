@@ -49,19 +49,19 @@ class _TextDisplayWidgetState extends State<TextDisplayWidget> with SingleTicker
     super.initState();
     _loadTexts();
 
-    // Initialize your AnimationController
+    // Shorten the duration to speed up the vibration
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 50), // Duration of the vibration effect
+      duration: const Duration(milliseconds: 50), // Shorter duration for a quicker vibration
       vsync: this,
     );
 
-    // Define the Tween to specify the range of the vibration movement. Adjust as needed.
+    // Define the Tween for the vibration range
     _animation = Tween<double>(begin: -2.0, end: 2.0).animate(_controller)
       ..addListener(() {
         setState(() {});
       });
 
-    // Set up the animation to repeat forward and reverse
+    // Set up the animation to repeat
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _controller.reverse();
@@ -73,15 +73,23 @@ class _TextDisplayWidgetState extends State<TextDisplayWidget> with SingleTicker
 
   @override
   void dispose() {
-    _controller.dispose(); // Don't forget to dispose the controller
+    _controller.dispose(); // Dispose the controller
     super.dispose();
+  }
+
+  void _vibrateText() {
+    _controller.forward(from: 0.0); // Start the vibration
+    // Stop the animation after a short duration
+    Future.delayed(Duration(milliseconds: 200)).then((_) {
+      _controller.stop(); // Stop the vibration
+    });
   }
 
   void _showNextText() {
     setState(() {
       if (_currentIndex < _texts.length - 1) {
         _currentIndex++;
-        _controller.forward(from: 0.0); // Start the vibration animation
+        _vibrateText(); // Trigger the vibration
       }
     });
   }
@@ -90,7 +98,7 @@ class _TextDisplayWidgetState extends State<TextDisplayWidget> with SingleTicker
     setState(() {
       if (_currentIndex > 0) {
         _currentIndex--;
-        _controller.forward(from: 0.0); // Start the vibration animation
+        _vibrateText(); // Trigger the vibration
       }
     });
   }
