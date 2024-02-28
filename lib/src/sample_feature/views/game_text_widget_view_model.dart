@@ -5,7 +5,7 @@ import 'package:party_games/src/first_game/Servicies/text_service_interface.dart
 import 'package:party_games/src/sample_feature/domain/player.dart';
 
 class GameTextViewModel {
-  final List<Player> players = [];
+  List<Player> players = [];
   final List<GameSentence> _texts = [];
   final TextService textService;
   final Color backgroundColor = Colors.white;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:party_games/src/Picolo/game_mode.dart';
 import 'package:party_games/src/Picolo/picolo.dart';
 import 'package:party_games/src/first_game/Servicies/local_text_service.dart';
-import 'package:party_games/src/sample_feature/infrastructure/text_display_widget_factory.dart';
+import 'package:party_games/src/sample_feature/infrastructure/feature_factory.dart';
 import '../settings/settings_view.dart';
 import 'sample_item.dart';
 
@@ -19,7 +19,7 @@ class SampleItemListView extends StatelessWidget {
       case 0: return "id of the row 0";
       case 1: return "id of the row 1";
       case 2: return "id of the row 2";
-      case 3: return "id of the row 3";
+      case 3: return "Player name loading screen";
       case 4: return "Picolo";
       case 5: return "Game List";
       default: break;
@@ -63,18 +63,12 @@ class SampleItemListView extends StatelessWidget {
               }
               if (item.id == 4) {
                 // Navigate to the game
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => TextDisplayWidgetFactory.create()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => FeatureFactory.create()));
               }
-              // if (index == items.length - 2) {
-              //   // Navigate to the game
-              //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => TextDisplayWidget(textService: LocalTextService())));
-              //  } else {
-              //   // Navigate to the details page for other items 
-              //   Navigator.restorablePushNamed(
-              //     context,
-              //     SampleItemDetailsView.routeName,
-              //   );
-              // }
+              if (item.id == 3) {
+                // Navigate to the game
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => FeatureFactory.createPlayersViewModel()));
+              }
             }
           );
         },
