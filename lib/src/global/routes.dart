@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:party_games/src/sample_feature/infrastructure/text_display_widget_factory.dart';
+import 'package:party_games/src/sample_feature/infrastructure/feature_factory.dart';
 
 class Routes {
   static const String home = '/';

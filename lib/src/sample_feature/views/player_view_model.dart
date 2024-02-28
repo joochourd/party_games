@@ -14,6 +14,7 @@ class PlayersViewModel extends ChangeNotifier {
   }
 
   void playGame() {
+    print("play game pressed");
     navigationService.navigateToGameText(players);
   }
   
