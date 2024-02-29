@@ -5,14 +5,17 @@ import 'package:party_games/src/global/navigator_service.dart';
 
 class AppRouterDelegate extends RouterDelegate<AppState> with ChangeNotifier, PopNavigatorRouterDelegateMixin<AppState> {
   final NavigationService navigationService;
+  @override
+  GlobalKey<NavigatorState>? get navigatorKey => navigationService.navigatorKey; // Implement the navigatorKey getter
 
   AppRouterDelegate(this.navigationService) {
-    navigationService.addListener(notifyListeners);
-  }
+    // navigatorKey = GlobalKey<NavigatorState>();
+    navigationService.addListener(() {notifyListeners();});
+  }  
 
   @override
   Widget build(BuildContext context) {
-    return Navigator(
+    var navigator = Navigator(
       key: navigatorKey, // Use the navigatorKey from NavigationService
       pages: navigationService.pages,
       onPopPage: (route, result) {
@@ -23,17 +26,37 @@ class AppRouterDelegate extends RouterDelegate<AppState> with ChangeNotifier, Po
         return true;
       },
     );
+    return navigator;
   }
   
-  @override
-  GlobalKey<NavigatorState>? get navigatorKey => navigationService.navigatorKey; // Implement the navigatorKey getter
   
-  @override
-  Future<void> setNewRoutePath(configuration) async {
-    // Implement based on your AppState
-    // For example, if configuration is a route path, navigate to that path
-    // navigationService.navigateTo(configuration);
+@override
+Future<void> setNewRoutePath(AppState configuration) async {
+  // Assuming your AppState can provide a route name
+  if (configuration.isHomePage) {
+    // Use your navigationService to navigate to the route
+    navigationService.navigateTo(configuration.currentRoute);
   }
+}
+
 
   // Other RouterDelegate methods...
 }
+
+
+// class BookRouterDelegate extends RouterDelegate<BookRoutePath> with ChangeNotifier, PopNavigatorRouterDelegateMixin<BookRoutePath> {
+  
+// final GlobalKey<NavigatorState> navigatorKey;
+// Book? _selectedBook;
+// bool show404 = false;
+// List<Book> books = [ Book('Stranger in a Istrange Land', 'Robert A. Heinlein'),
+//                     Book('Foundation', 'Isaac Asimov'),
+//                      Book('Fahrenheit 451', 'Ray Bradbury')];
+                      
+//   BookRoutePath get currentConfiguration {
+//       if (show404) {
+//           return BookRoutePath. unknown);
+//       }
+//         return _selectedBook = null 
+//         ? BookRoutePath. home (
+//         : BookRoutePath.details(books.index0f(_selectedBook!));

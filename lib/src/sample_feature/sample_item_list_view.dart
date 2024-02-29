@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:party_games/src/Picolo/game_mode.dart';
 import 'package:party_games/src/Picolo/picolo.dart';
 import 'package:party_games/src/first_game/Servicies/local_text_service.dart';
+import 'package:party_games/src/global/navigator_service.dart';
 import 'package:party_games/src/sample_feature/infrastructure/feature_factory.dart';
 import '../settings/settings_view.dart';
 import 'sample_item.dart';
@@ -11,7 +12,7 @@ import 'sample_item.dart';
 class SampleItemListView extends StatelessWidget {
   const SampleItemListView({
     super.key,
-    this.items = const [SampleItem(1), SampleItem(2), SampleItem(3), SampleItem(4), SampleItem(5)], // Assume 4th item is the game
+    this.items = const [SampleItem(1), SampleItem(2), SampleItem(3), SampleItem(4), SampleItem(5)], required this.navigationService, // Assume 4th item is the game
   });
 
   String getName(int id){
@@ -30,6 +31,7 @@ class SampleItemListView extends StatelessWidget {
   static var localTextSevice = LocalTextService();
   final List<SampleItem> items;
   static var gameModes = GameModeDefaultExtension.getDefaultModes();
+  final NavigationService navigationService;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +61,8 @@ class SampleItemListView extends StatelessWidget {
             onTap: () {
               if (item.id == 5) {
                 // Navigate to the game
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => GamesListView()));
+                navigationService.goToGameListView();
+                // Navigator.of(context).push(MaterialPageRoute(builder: (context) => GamesListView()));
               }
               if (item.id == 4) {
                 // Navigate to the game

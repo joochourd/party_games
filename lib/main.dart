@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:party_games/src/Picolo/picolo.dart';
 import 'package:party_games/src/global/app_router_delegate.dart';
 import 'package:party_games/src/global/navigator_service.dart';
-
-import 'src/app.dart';
+import 'package:party_games/src/global/route_information_parser.dart';
+import 'package:party_games/src/sample_feature/sample_item_list_view.dart';
 import 'src/settings/settings_controller.dart';
 import 'src/settings/settings_service.dart';
 
@@ -17,19 +18,16 @@ void main() async {
   await settingsController.loadSettings();
 
   final navigationService = NavigationService();
+  final firstWidget = SampleItemListView(navigationService: navigationService);
+  final firstPage = MaterialPage(child: firstWidget, key: const ValueKey('SampleItemListView'));
+  final secondPage = MaterialPage(child: GamesListView(), key: const ValueKey('GameListView'));
+  navigationService.pages.add(firstPage);
+  navigationService.pages.add(secondPage);
   final routerDelegate = AppRouterDelegate(navigationService);
+  final routerInformationParser = RouterInformationParser();
   
   runApp(MaterialApp.router(
     routerDelegate: routerDelegate,
-    // Define RouteInformationParser if needed
-  ));
-
-  // Run the app and pass in the SettingsController. The app listens to the
-  // SettingsController for changes, then passes it further down to the
-  // SettingsView.
-  // runApp(MyApp(settingsController: settingsController));
-    runApp(MaterialApp.router(
-    routerDelegate: routerDelegate,
-    // Define RouteInformationParser if needed
+    // routeInformationParser: routerInformationParser,
   ));
 }
