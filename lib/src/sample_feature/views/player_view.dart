@@ -46,7 +46,7 @@ class PlayersView extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: viewModel.playGame,
-                  child: Text('Play Game'),
+                  child: const Text('Play Game'),
                 ),
               ],
             );
