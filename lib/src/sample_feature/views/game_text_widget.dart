@@ -2,19 +2,19 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:party_games/src/first_game/Servicies/game_sentence.dart';
-import 'package:party_games/src/sample_feature/domain/view_model.dart'; // If needed
+import 'package:party_games/src/sample_feature/views/game_text_widget_view_model.dart'; // If needed
 
-class TextDisplayWidget extends StatefulWidget {
+class GameTextWidget extends StatefulWidget {
   final GameTextViewModel viewModel;
   String? _previousText;
 
-  TextDisplayWidget({super.key, required this.viewModel});
+  GameTextWidget({super.key, required this.viewModel});
 
   @override
-  _TextDisplayWidgetState createState() => _TextDisplayWidgetState();
+  _GameTextWidgetState createState() => _GameTextWidgetState();
 }
 
-class _TextDisplayWidgetState extends State<TextDisplayWidget>
+class _GameTextWidgetState extends State<GameTextWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
