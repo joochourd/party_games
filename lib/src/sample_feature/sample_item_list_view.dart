@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:party_games/src/Picolo/game_mode.dart';
-import 'package:party_games/src/Picolo/picolo.dart';
 import 'package:party_games/src/first_game/Servicies/local_text_service.dart';
 import 'package:party_games/src/global/navigator_service.dart';
 import 'package:party_games/src/sample_feature/infrastructure/feature_factory.dart';
@@ -60,13 +59,11 @@ class SampleItemListView extends StatelessWidget {
             ),
             onTap: () {
               if (item.id == 5) {
-                // Navigate to the game
-                navigationService.goToGameListView();
-                // Navigator.of(context).push(MaterialPageRoute(builder: (context) => GamesListView()));
+                navigationService.goToGameListView(context);
               }
               if (item.id == 4) {
                 // Navigate to the game
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => FeatureFactory.create()));
+                // navigationService.navigateToGameText(context);
               }
               if (item.id == 3) {
                 // Navigate to the game

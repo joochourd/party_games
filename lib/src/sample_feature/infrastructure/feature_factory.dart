@@ -34,7 +34,7 @@ class FeatureFactory {
   }
 
   static NavigationService getNavigationService(){
-    return NavigationService();
+    return NavigationService.instance;
   }
 }
 
