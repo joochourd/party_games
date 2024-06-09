@@ -11,7 +11,7 @@ import 'sample_item.dart';
 class SampleItemListView extends StatelessWidget {
   const SampleItemListView({
     super.key,
-    this.items = const [SampleItem(1), SampleItem(2), SampleItem(3), SampleItem(4), SampleItem(5)], required this.navigationService, // Assume 4th item is the game
+    this.items = const [SampleItem(3), SampleItem(4), SampleItem(5)], required this.navigationService, // Assume 4th item is the game
   });
 
   String getName(int id){
