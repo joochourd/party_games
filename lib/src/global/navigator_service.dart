@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:party_games/src/Picolo/picolo.dart'; // Ensure this import is correct
+import 'package:party_games/src/Picolo/game_list_view.dart'; // Ensure this import is correct
 import 'package:party_games/src/sample_feature/domain/player.dart';
 import 'package:party_games/src/sample_feature/infrastructure/feature_factory.dart';
 import 'package:party_games/src/sample_feature/views/game_text_widget.dart';

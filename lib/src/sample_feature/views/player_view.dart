@@ -14,7 +14,7 @@ class PlayersView extends StatelessWidget {
     return ChangeNotifierProvider<PlayersViewModel>.value(
       value: viewModel, // Use the provided viewModel
       child: Scaffold(
-        appBar: AppBar(title: Text('Add Players')),
+        appBar: AppBar(title: const Text('Add Players')),
         body: Consumer<PlayersViewModel>(
           builder: (context, viewModel, child) {
             return Column(
